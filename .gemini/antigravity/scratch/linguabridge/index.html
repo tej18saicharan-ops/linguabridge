@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LinguaBridge - High-performance AI-powered translator using Google Gemini API">
+  <title>LinguaBridge - AI Translation Bridge</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons (via devicon or unpkg for SVG) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <i data-lucide="languages"></i>
+        </div>
+        <div class="logo-text">
+          <h1>LinguaBridge</h1>
+          <span class="subtitle">AI-Powered Translation</span>
+        </div>
+      </div>
+      
+      <!-- API Status Indicator -->
+      <div id="api-status" class="api-status-badge checking">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking System Status...</span>
+      </div>
+    </header>
+
+    <!-- Main Translator UI -->
+    <main class="translator-main">
+      <div class="translator-card">
+        <!-- Translation Controls/Panels -->
+        <div class="translation-grid">
+          <!-- Source Column -->
+          <div class="input-panel">
+            <div class="panel-header">
+              <label for="source-lang-select" class="sr-only">Source Language</label>
+              <select id="source-lang-select" class="lang-select">
+                <option value="auto" selected>Detect Language</option>
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Italian">Italian</option>
+                <option value="Portuguese">Portuguese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Arabic">Arabic</option>
+              </select>
+              <div class="char-counter"><span id="char-count">0</span> / 2000</div>
+            </div>
+            
+            <div class="textarea-wrapper">
+              <textarea id="source-text" placeholder="Type or paste text to translate..." maxlength="2000"></textarea>
+              <button id="clear-btn" class="icon-btn tooltip" data-tooltip="Clear input" aria-label="Clear text input">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Swap Button Column (Desktop: middle, Mobile: between panels) -->
+          <div class="swap-action-wrapper">
+            <button id="swap-langs-btn" class="swap-btn" aria-label="Swap languages">
+              <i data-lucide="arrow-left-right"></i>
+            </button>
+          </div>
+
+          <!-- Target Column -->
+          <div class="output-panel">
+            <div class="panel-header">
+              <label for="target-lang-select" class="sr-only">Target Language</label>
+              <select id="target-lang-select" class="lang-select">
+                <option value="Spanish" selected>Spanish</option>
+                <option value="English">English</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Italian">Italian</option>
+                <option value="Portuguese">Portuguese</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Arabic">Arabic</option>
+              </select>
+              <div class="action-buttons">
+                <button id="copy-btn" class="icon-btn tooltip" data-tooltip="Copy translation" aria-label="Copy translated text">
+                  <i data-lucide="copy"></i>
+                </button>
+                <button id="speak-btn" class="icon-btn tooltip" data-tooltip="Listen" aria-label="Listen to translated text">
+                  <i data-lucide="volume-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="textarea-wrapper output-wrapper">
+              <div id="output-placeholder" class="output-placeholder">Translation will appear here...</div>
+              <div id="output-text" class="output-text hidden"></div>
+              
+              <!-- Shimmer Loader -->
+              <div id="translation-loader" class="shimmer-loader hidden">
+                <div class="shimmer-line"></div>
+                <div class="shimmer-line line-short"></div>
+                <div class="shimmer-line line-medium"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Panel -->
+        <div class="action-panel">
+          <button id="translate-btn" class="btn btn-primary">
+            <span class="btn-text">Translate</span>
+            <i data-lucide="sparkles"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Tips / History Panel -->
+      <section class="secondary-section">
+        <div class="history-card">
+          <div class="card-header">
+            <h2 class="section-title">
+              <i data-lucide="history"></i>
+              Translation Feed
+            </h2>
+            <button id="clear-history-btn" class="text-btn">Clear local history</button>
+          </div>
+          <div id="history-list" class="history-list">
+            <!-- Loaded dynamically from API/localstorage -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>LinguaBridge &copy; 2026. Powered by Google Gemini AI Studio API.</p>
+    </footer>
+  </div>
+
+  <!-- Main JavaScript File -->
+  <script src="main.js"></script>
+</body>
+</html>

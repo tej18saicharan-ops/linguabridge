@@ -1,1 +1,14 @@
-{ "rewrites": [{ "source": "/api/translate", "destination": "/api/translate" },{ "source": "/api/messages", "destination": "/api/messages" },{ "source": "/api/health", "destination": "/api/health" },{ "source": "/(.*)", "destination": "/public/index.html" }] } 
+{
+  "version": 2,
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node@3.0.0"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/public/index.html"
+    }
+  ]
+}

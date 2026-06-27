@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "functions": {
     "api/*.js": {
       "runtime": "@vercel/node@3.0.0"
@@ -9,6 +10,12 @@
     {
       "source": "/(.*)",
       "destination": "/public/index.html"
+=======
+  "rewrites": [
+    {
+      "source": "/((?!api/.*).*)",
+      "destination": "/index.html"
+>>>>>>> 60e0218 (Fix Vercel structure)
     }
   ]
 }
